@@ -1,0 +1,16 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Домашняя страница{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<--- Проверяем, если пользователь уже залогинился, то выводим для него приветственное сообщение
+<h2>Здравствуйте ! {{ user.email }}! Вы успешно вошли в систему.</h2>
+  <p><a href="{% url 'logout' %}">Log out</a></p>
+{% else %}
+  <p>Пожалуйста войдите в систему или зарегистрируйтесь</p>
+  <a href="{% url 'login' %}">Log In</a>
+  <a href="">Регистрация</a>
+{% endif %}
+{% endblock %}
