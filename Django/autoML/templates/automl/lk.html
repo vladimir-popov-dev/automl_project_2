@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} Личный кабинет {% endblock %}
+
+{% block content %}
+<div class="container col-10 pt-5 mt-4">
+    <div class="row">
+        <div class="col-md-4 px-5 pt-4">
+            <a href="{% url 'dataset_create' %}" class="btn btn-primary btn-block ">Загрузить данные</a>
+            </br>
+            <a href="#" class="btn btn-primary btn-block ">Управление заданиями</a>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6 p-3 h-100 border border-secondary">
+                    .col-md-6
+                </div>
+                <div class="col-md-6 p-3 h-100 border border-secondary">.
+                    col-md-6
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 px-5">
+
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6 p-3 h-100 border border-secondary">
+                    {% if projs %}
+                        {% for proj in projs %}
+                        <p> {{ proj.project_name }}</p>
+                        {% endfor%}
+                    {% else %}
+                         <p> Нет данных</p>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 p-3 h-100" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
