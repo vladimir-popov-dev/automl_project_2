@@ -2,13 +2,13 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import MLUserCreationForm, MLUserChangeForm
-from .models import MLUser
+from .models import User, Dataset, Project, ProjectResults
 
 
 class MLUserAdmin(UserAdmin):
     add_form = MLUserCreationForm
     form = MLUserChangeForm
-    model = MLUser
+    model = User
     list_display = ('email', 'is_staff', 'is_active',)
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (
@@ -25,4 +25,8 @@ class MLUserAdmin(UserAdmin):
     ordering = ('email',)
 
 
-admin.site.register(MLUser, MLUserAdmin)
+admin.site.register(User, MLUserAdmin)
+admin.site.register(Dataset)
+admin.site.register(Project)
+admin.site.register(ProjectResults)
+

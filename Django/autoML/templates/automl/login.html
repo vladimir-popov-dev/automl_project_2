@@ -1,16 +1,41 @@
-<!-- templates/registration/login.html -->
+<!-- login.html -->
 {% extends 'base.html' %}
 
-{% block title %}Log In{% endblock %}
+{% block title %} {{type}} {% endblock %}
 
 {% block content %}
-# Мы будем передавать в шаблон переменные type и button, на основе которой будем  показовать пользователю форму логина или регистрации
-
-<h2>{{ type }}</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">{{ button }}</button>
-</form>
+<div class="container col-10">
+    <div class="row col-10 mx-auto">
+        <h2 class="mx-auto">{{ type }}</h2>
+    </div>
+    <br>
+    <div class="row">
+        <div class="row col-8 mx-auto">
+        <form class="col-8 mx-auto" method="post">
+              <div class="">
+                    {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-{{message.tags}}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% endif %}
+              </div>
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary btn-block">{{ button }}</button>
+        </form>
+        </div>
+        <div class="col-4 mx-auto">
+            <p class="border border-info h-100"> Some description text</p>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
